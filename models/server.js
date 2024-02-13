@@ -2,12 +2,12 @@ const express = require('express');
 
 const cors = require('cors');
 
-const { bdConnection, dbConnection } = require('../db/config');
+const { dbConnection } = require('../db/config');
 // Siguientes variables para las dependencias que instalamos.
 
 class Server{
     constructor(){
-        trhis.app = express();
+        this.app = express();
         this.port = process.env.PORT;
         this.usuarioPath = '/api/usuarios';
         this.authPath = '/api/auth';

@@ -5,6 +5,7 @@
     "dotenv": "^16.4.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
+    "middlewares": "^0.1.1",
     "mongoose": "^8.1.2",
     "sequelize": "^6.37.0"
   }
