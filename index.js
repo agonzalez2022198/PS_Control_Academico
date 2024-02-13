@@ -1,4 +1,4 @@
-const Server = require('../PS_Control_Academico/models/server');
+const Server = require('./models/server');
 
 require('dotenv').config();
 

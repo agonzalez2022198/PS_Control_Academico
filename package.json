@@ -8,5 +8,17 @@
     "middlewares": "^0.1.1",
     "mongoose": "^8.1.2",
     "sequelize": "^6.37.0"
-  }
+  },
+  "name": "ps_control_academico",
+  "description": "Repositorio para la creación de una aplicación para el registro de estudiantes, profesores y cursos.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Adolfo González",
+  "license": "ISC"
 }
