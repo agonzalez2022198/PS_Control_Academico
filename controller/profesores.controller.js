@@ -7,7 +7,7 @@ const profesGet = async (req, res = response) => {
     const {limite, desde} = req.body;
     const query = {estado: true};
 
-    const [tltal, profes] = await Promise.all([
+    const [total, profes] = await Promise.all([
 
         Profes.countDocuments(query),
         Profes.find(query)
@@ -38,7 +38,7 @@ const profesPost = async (req, res) => {
     const {nombre, apellidos, carnet, correo, telefono, estado} =req.body;
     const profes = new Profes({nombre, apellidos, carnet, correo, telefono, estado});
 
-    await estudiante.save();
+    await profes.save();
     res.status(202).json({
         profes
     });

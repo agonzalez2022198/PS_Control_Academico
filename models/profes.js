@@ -36,7 +36,7 @@ const ProfesSchema = Schema({
 });
 
 
-UsuarioSchema.methods.toJSON = function(){
+ProfesSchema.methods.toJSON = function(){
     const{ __v, correo, _id, ...profes} = this.toObject();
     profes.uid = _id;
     return profes;
