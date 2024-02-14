@@ -19,7 +19,7 @@ const EstudianteSchema = Schema({
 
     correo: {
         type: String,
-        required: [true, 'Necesitar llenar es te espacio.'],
+        required: [true, 'Necesitar llenar este espacio.'],
         unique: true
     },
 
