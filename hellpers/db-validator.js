@@ -2,6 +2,7 @@ const Role = require('../models/role');
 const Usuario = require('../models/usuario');
 
 const Estudiante = require('../models/estudiante');
+const Profes = require('../models/profes')
 
 const esRoleValido = async (role = '') => {
     const existeRol = await Role.findIne({role});
@@ -41,9 +42,20 @@ const existenteEmailEst = async(correo = '') => {
 }
 
 
+const existenteEmailProf = async(correo = '') => {
+    const existeEmail = await Profes.findOne({correo});
+    if(existeEmail){
+        throw new Error(`El correo ${ correo } ya está parce`);
+    }
+
+
+}
+
+
 module.exports = {
     esRoleValido,
     existenteEmail,
     existeUsuarioById,
-    existenteEmailEst
+    existenteEmailEst,
+    existenteEmailProf
 }
