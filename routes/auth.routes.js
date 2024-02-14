@@ -1,51 +1,17 @@
-const { request, response } = require("express");
-const Usuario = require("../models/usuario");
-const bycryptjs = require('bcryptjs');
-const { generarJWT } = require("../hellpers/generar-jwt");
+const { Router } = require('express');
+const { check } =  require('express-validator');
 
+const { login } = require('../controller/auth.controller');
+const { validarCampos } =  require('../middleawares/validar-campos');
 
-const login = async (req = request, res = response) => {
-    const { correo, password } = req.body;
+const router = Router();
 
-    try{
-        const usuario = await Usuario.findOne({correo});
+router.post(
+    '/login',
+    [
+        check('correo', "Este no es un correo válido").isEmail(),
+        check('password'," el password es obligatorio").not().isEmpty(),
+        validarCampos
+    ], login);
 
-        if(!usuario){
-            return res.status(400).json({
-                msg: "Credencias incorrectas, correo no existe en la base de datos."
-            });
-        }
-
-         if(!usuario.estado){
-            return res.status(400).json({
-                msg: " El usuario no existe en la base de datos."
-            });
-         };
-
-         const validarPassword = bycryptjs.compareSync(password, usuario.password);
-         if(!validarPassword){
-            return res.status(400).json({
-                msg: "La contraseña es incorrecta"
-            })
-         }
-
-         const token = await generarJWT(usuario.id);
-
-         res.status(200).json({
-            msg: "Bienvenido",
-            usuario,
-            token
-         });
-
-    }catch(e){
-        console.log(e);
-        res.status(500).json({
-            msg: "Comuniquese con el administrador"
-        });
-    };
-
-};
-
-module.exports = {
-    login
-}
+module.exports = router;

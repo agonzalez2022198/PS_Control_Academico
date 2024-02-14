@@ -10,15 +10,28 @@ const UsuarioSchema = Schema({
     },
     correo:{
         type: String,
-        required: [true, 'El correo es obligatorio']
+        required: [true, 'El correo es obligatorio'],
+        unique: true
     },
     password: {
         type: String,
         required: [true, 'La contraseña es obligatoria']
     },
-    token: {
+    img: {
+        type: String
+    },
+    role:{
         type: String,
-        required: [true, 'El token para saber si eres administrador o estudiante.']
+        require: true,
+        enum: ["ADMIN_ROLE", "USER_ROLE"]
+    },
+    estado:{
+        type: Boolean,
+        default: true
+    },
+    google:{
+        type: Boolean,
+        default: false
     }
 
 

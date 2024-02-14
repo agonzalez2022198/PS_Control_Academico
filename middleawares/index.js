@@ -4,8 +4,8 @@ const  esAdminRole  = require('../middleawares/validar-roles');
 const  tieneRolAutorizado  = require('../middleawares/validar-roles');
 
 module.exports = {
-    validarCampos,
-    validarJWT,
-    esAdminRole,
-    tieneRolAutorizado
+    ...validarCampos,
+    ...validarJWT,
+    ...esAdminRole,
+    ...tieneRolAutorizado
 }

@@ -4,14 +4,74 @@ const { response } = require('express');
 
 const usuariosGet = async (req, res = response) => {
     const {limite, desde} = rep.query;
+    const query = {estado: true}
+
+    cibst [toDefaultValue, usuarios] = await Promise.all([
+        Usuario.countDocuments(query),
+        Usuario.find(query)
+        .skip(Number(desde))
+        .limit(Number(limite))
+    ]);
+
+    res.status(200).json({
+        total,
+        usuarios
+    });
+
 }
 
 
 //Crear metodo para roles, crear una clase para llevar tokens, esto es para probar el login.
 
-const agregarUsuario = async (req, res) => {
-    const {nombre, correo, password, token} = req.body;
-    const usuario = new Usuario({nombre, correo, password, token});
+
+const getUsuarioById = async (req, res) => {
+    const {id} = req.params;
+    const usuario = await Usuario.findOne({_id: id});
+
+    res.status(200).json({
+        usuario
+    });
+}
+
+
+const putUsuarios = async (req, res = response) => {
+    const { id } = req.params;
+    const { _id, password, google, correo, ...resto } = req.body;
+
+    if(password){
+        const salt = bcryptjs.genSaltSync();
+        resto.password = bcryptjs.hashSync(password, salt);
+
+    }
+
+    await Usuario.findByIdAndUpdate(id, resto);
+
+    const usuario = Usuario.findOne({id});
+
+    res.status(200).json({
+        msg: 'Usuario Actualizado Exitosamente!!!',
+        usuario
+    });
+}
+
+
+const usuariosDelete = async (req, res) => {
+
+    const {id} = req.params;
+    const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
+    const usuarioAutenticado = req.usuario;
+
+    res.status(200).json({
+        msg: "Usuario a eliminar",
+        usuario,
+        usuarioAutenticado
+    });
+}
+
+
+const usuariosPost = async (req, res) => {
+    const {nombre, correo, password, role} = req.body;
+    const usuario = new Usuario({nombre, correo, password, role});
 
     const salt = bcryptjs.genSaltSync();
     usuario.password = bcryptjs.hashSync(password, salt);
@@ -26,5 +86,10 @@ const agregarUsuario = async (req, res) => {
 //Modulos para exportar y usarlos en otras clases
 
 module.exports = {
-    agregarUsuario
+    usuariosGet,
+    getUsuarioById,
+    putUsuarios,
+    usuariosDelete,
+    usuariosPost
+
 }

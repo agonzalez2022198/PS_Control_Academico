@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 //const { validarJWT } = require('../middlewares/validar-jwt');
 //const { esAdminRole, tieneRolAutorizado } = require('../middlewares/validar-roles');
 
-const { validarCampos, validarJWT, tieneRolAutorizado } = require('../middleawares');
+const { validarCampos, validarJWT, esAdminRole, tieneRolAutorizado } = require('../middleawares');
 
 const { 
     usuariosPost,

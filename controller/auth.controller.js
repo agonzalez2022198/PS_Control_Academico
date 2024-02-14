@@ -1,6 +1,6 @@
 const { request, response } = require("express");
 const Usuario = require("../models/usuario");
-const bycryptjs = require("bycryptjs");
+const bycryptjs = require("bcryptjs");
 
 
 const login = async (req= request, res = response) => {
