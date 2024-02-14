@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 const {
     estudiantesGet,
     estudiantesPost,
-    getEstudiantesById } = require('../controller/estuduante.controller');
+    getEstudiantesById } = require('../controller/estudiante.controller');
 
 
 const {validarCampos} = require('../middleawares');

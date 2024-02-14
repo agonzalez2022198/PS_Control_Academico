@@ -38,9 +38,9 @@ const EstudianteSchema = Schema({
 
 
 EstudianteSchema.methods.toJSON = function(){
-    const {__v, carnet, _id, ...correo } = this.toObject();
-    usuario.uid = _id;
-    return usuario;
+    const {__v, carnet, _id, correo, ...estudiante} = this.toObject();
+    estudiante.uid = _id;
+    return estudiante;
 
 };
 

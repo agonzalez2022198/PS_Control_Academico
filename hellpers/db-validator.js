@@ -33,7 +33,7 @@ const existeUsuarioById = async(id = '') =>{
 
 const existenteEmailEst = async(correo = '') => {
     const existeEmail = await Estudiante.findOne({correo});
-    if(!existeEmail){
+    if(existeEmail){
         throw new Error(`El correo ${ correo } ya está parce`);
     }
 
