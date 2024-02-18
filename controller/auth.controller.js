@@ -1,6 +1,7 @@
 const { request, response } = require("express");
 const Usuario = require("../models/usuario");
 const bycryptjs = require("bcryptjs");
+const { generarJWT } = require("../hellpers/generar-jwt");
 
 
 const login = async (req= request, res = response) => {
@@ -24,7 +25,7 @@ const login = async (req= request, res = response) => {
         }
 
 
-        const validarPassword = bycryptjs.comparesync(password, usuario.password);
+        const validarPassword = bycryptjs.compareSync(password, usuario.password);
 
         if(!validarPassword){
             return res.status(400).json({

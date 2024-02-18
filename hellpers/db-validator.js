@@ -5,8 +5,8 @@ const Estudiante = require('../models/estudiante');
 const Profes = require('../models/profes')
 
 const esRoleValido = async (role = '') => {
-    const existeRol = await Role.findIne({role});
-    if(!existeRol){
+    const existeRol = await Role.findOne({role});
+    if(existeRol){
         throw new Error(`El role ${ role } no existe en la DB`);
     }
 
@@ -15,7 +15,7 @@ const esRoleValido = async (role = '') => {
 
 const existenteEmail = async(correo = '') => {
     const existeEmail = await Usuario.findOne({correo});
-    if(!existeEmail){
+    if(existeEmail){
         throw new Error(`El correo ${ correo } ya está registrado`);
     }
 
@@ -25,7 +25,7 @@ const existenteEmail = async(correo = '') => {
 
 const existeUsuarioById = async(id = '') =>{
     const existeUsuario = await Usuario.findOne({id});
-    if(!existeUsuario){
+    if(existeUsuario){
         throw new Error(`El usuario con el id ${ id } no existe`);
     }
 
