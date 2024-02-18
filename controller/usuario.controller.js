@@ -21,6 +21,9 @@ const usuariosGet = async (req, res = response) => {
 }
 
 
+//Cambiar para roles de estudiante y profesores
+
+
 //Crear metodo para roles, crear una clase para llevar tokens, esto es para probar el login.
 
 
