@@ -1,0 +1,151 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "post estudiantes",
+    "dateExported": "2024-02-19T05:32:01.982Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f5a00eb7-0131-4263-8cc4-1b755f0b1f69",
+            "colId": "31ef4d05-5b3d-41b4-bddc-da02a011b2f2",
+            "containerId": "",
+            "name": "post estudiante",
+            "url": "http://localhost:3000/api/estudiantes",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-14T20:21:08.762Z",
+            "modified": "2024-02-14T22:19:26.054Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\":\"Pablo\",\n  \"apellidos\":\"Gonzalez\",\n  \"carnet\":\"2022198\",\n  \"correo\":\"pablower@gmail.com\",\n  \"telefono\":\"90876567\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a33f2f97-2398-42fb-a075-6c0100506afc",
+            "colId": "31ef4d05-5b3d-41b4-bddc-da02a011b2f2",
+            "containerId": "",
+            "name": "get estudiantes",
+            "url": "http://localhost:3000/api/estudiantes",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-02-14T22:24:49.894Z",
+            "modified": "2024-02-14T22:25:06.194Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "b02e9731-05de-4969-8fd7-97d0102a244e",
+            "colId": "31ef4d05-5b3d-41b4-bddc-da02a011b2f2",
+            "containerId": "",
+            "name": "post profes",
+            "url": "http://localhost:3000/api/profes",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-02-14T23:05:04.109Z",
+            "modified": "2024-02-14T23:13:25.057Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\":\"Braulio\",\n  \"apellidos\":\"Echeverria\",\n  \"carnet\":\"2334454\",\n  \"correo\":\"braulioeche@gmail.com\",\n  \"telefono\":\"45567887\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "eb05808e-c34d-4e48-af35-c2fb1e451691",
+            "colId": "31ef4d05-5b3d-41b4-bddc-da02a011b2f2",
+            "containerId": "",
+            "name": "get profes",
+            "url": "http://localhost:3000/api/profes",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-02-14T23:13:46.872Z",
+            "modified": "2024-02-14T23:13:56.809Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d25f18b7-b85d-4369-b183-7f26ec00dd01",
+            "colId": "31ef4d05-5b3d-41b4-bddc-da02a011b2f2",
+            "containerId": "",
+            "name": "post cursos",
+            "url": "http://localhost:3000/api/cursos",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-02-15T07:10:54.098Z",
+            "modified": "2024-02-15T07:13:13.985Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nameCurso\": \"Mate\",\n  \"descripcion\": \"Es mate wey\",\n  \"instructor\": \"harry potter\",\n  \"precio\": \"Q394\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4fccf545-6244-4b70-8cb9-4cdb28e8570b",
+            "colId": "31ef4d05-5b3d-41b4-bddc-da02a011b2f2",
+            "containerId": "",
+            "name": "post user",
+            "url": "http://localhost:3000/api/usuarios",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-02-18T17:49:11.065Z",
+            "modified": "2024-02-18T17:59:33.523Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\"nombre\":\"Juan Pablo\",\n\"correo\":\"jpablito@gmail.com\",\n\"password\":\"1234567\",\n\"role\":\"USER_ROLE\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "35058864-568d-45dd-9474-dbe6772f62b4",
+            "colId": "31ef4d05-5b3d-41b4-bddc-da02a011b2f2",
+            "containerId": "",
+            "name": "login",
+            "url": "http://localhost:3000/api/auth/login",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-02-18T17:56:22.199Z",
+            "modified": "2024-02-18T18:13:32.642Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"correo\": \"jpablito@gmail.com\",\n  \"password\": \"1234567\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8d110cb2-6c92-4350-a0c4-d12bca929bf3",
+            "colId": "31ef4d05-5b3d-41b4-bddc-da02a011b2f2",
+            "containerId": "",
+            "name": "use delete",
+            "url": "http://localhost:3000/api/usuarios/65d2483a179fb71a8e928c23",
+            "method": "DELETE",
+            "sortNum": 80000,
+            "created": "2024-02-18T18:33:01.541Z",
+            "modified": "2024-02-18T18:34:28.498Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWQyNDgzYTE3OWZiNzFhOGU5MjhjMjMiLCJpYXQiOjE3MDgyODA1MjgsImV4cCI6MTcwODI4NDEyOH0.XK0V6lKluMuiuvUb9_6nX8w1QSkDwuYIsB6wXgAH_nY"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
