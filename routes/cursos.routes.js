@@ -5,12 +5,12 @@ const { check } = require('express-validator');
 const {
     cursosGet,
     getCursosById,
-    cursosPost } = require('../controller/curso.controller');
+    cursosPost, putCursos, cursoDelete } = require('../controller/curso.controller');
 
 
 const {validarCampos} = require('../middleawares');
 
-//const {existenteEmailEst} = require('../hellpers/db-validator');
+const {existeCursoId} = require('../hellpers/db-validator');
 
 const router = Router();
 
@@ -22,7 +22,28 @@ router.get(
         check('id', 'No es un id válido').isMongoId(),
         check('id').custom(getCursosById),
         validarCampos
-    ], getCursosById);
+    ], getCursosById
+);
+
+router.put(
+    "/:id",
+    [
+        check('id', 'No es un id valido').isMongoId(),
+        check('id').custom(existeCursoId),
+        validarCampos
+    ], putCursos
+);
+
+
+router.delete(
+    "/:id",
+    [
+        check('id', 'No es un id valido').isMongoId(),
+        check('id').custom(existeCursoId),
+        validarCampos
+    ],cursoDelete
+);
+
 
 router.post(
     "/",

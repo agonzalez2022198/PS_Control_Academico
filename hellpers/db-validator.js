@@ -3,6 +3,7 @@ const Usuario = require('../models/usuario');
 
 const Estudiante = require('../models/estudiante');
 const Profes = require('../models/profes')
+const Curso =require('../models/cursos')
 
 const esRoleValido = async (role = '') => {
     const existeRol = await Role.findOne({role});
@@ -51,11 +52,21 @@ const existenteEmailProf = async(correo = '') => {
 
 }
 
+const existeCursoId = async (id= '') => {
+    const existCurs = await Curso.findOne({id});
+
+    if(existCurs){
+        throw new Error(`El curso con el id ${id} does not exists`);
+    }
+
+}
+
 
 module.exports = {
     esRoleValido,
     existenteEmail,
     existeUsuarioById,
     existenteEmailEst,
-    existenteEmailProf
+    existenteEmailProf,
+    existeCursoId
 }

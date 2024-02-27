@@ -33,6 +33,31 @@ const getCursosById = async (req, res) => {
 }
 
 
+const cursoDelete = async (req, res) => {
+    const {id} = req.params;
+    const {curso} = await Cursos.findByIdAndUpdate(id, {estado: false});
+    res.status(200).json({
+        curso,
+        msg: 'Eliminado exitosamente'
+        
+    });
+}
+
+const putCursos = async (req, res = response) =>{
+    const {id} = req.params;
+    const { _id, ...resto } = req.body;
+    
+
+    const curso = await Cursos.findByIdAndUpdate(id, resto);
+
+    res.status(200).json({
+        curso,
+        msg: 'Curso actualizado!!'
+        
+    });
+}
+
+
 const cursosPost = async (req, res) => {
     const {nameCurso, descripcion, instructor, precio} = req.body;
     const cursos = new Cursos({nameCurso, descripcion, instructor, precio});
@@ -47,5 +72,7 @@ const cursosPost = async (req, res) => {
 module.exports = {
     cursosGet,
     getCursosById,
-    cursosPost
+    cursosPost,
+    cursoDelete,
+    putCursos
 }
