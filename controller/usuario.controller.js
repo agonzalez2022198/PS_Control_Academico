@@ -3,10 +3,10 @@ const Usuario = require('../models/usuario');
 const { response } = require('express');
 
 const usuariosGet = async (req, res = response) => {
-    const {limite, desde} = rep.query;
+    const {limite, desde} = req.query;
     const query = {estado: true}
 
-    cibst [toDefaultValue, usuarios] = await Promise.all([
+    const [total, usuarios] = await Promise.all([
         Usuario.countDocuments(query),
         Usuario.find(query)
         .skip(Number(desde))
@@ -67,7 +67,8 @@ const usuariosDelete = async (req, res) => {
     res.status(200).json({
         msg: "Usuario a eliminar",
         usuario,
-        usuarioAutenticado
+        usuarioAutenticado,
+        msg: "Eliminado el usuario men"
     });
 }
 

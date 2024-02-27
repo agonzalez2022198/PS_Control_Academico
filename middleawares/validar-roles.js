@@ -10,7 +10,7 @@ const esAdminRole = (req, res, next) => {
 
     const { role, nombre } =  req.usuario;
 
-    if(role !== "ADMIN_ROLE"){
+    if(role !== "PROFES"){
         return res.status(401).json({
             msg: `${nombre} no es un administrador, no puede usar este endpoint`
         });

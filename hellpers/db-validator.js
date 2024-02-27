@@ -7,7 +7,7 @@ const Curso =require('../models/cursos')
 
 const esRoleValido = async (role = '') => {
     const existeRol = await Role.findOne({role});
-    if(existeRol){
+    if(!existeRol){
         throw new Error(`El role ${ role } no existe en la DB`);
     }
 
@@ -61,6 +61,21 @@ const existeCursoId = async (id= '') => {
 
 }
 
+const mayorA3 = async(id = '') =>{
+    const estudiante = await Estudiante.findOne({_id: id});
+    const cursos = estudiante.cursos
+    if(cursos.length >= 3){
+        throw new Error('Este estudiante ya cuenta con el máximo de cursos asignables');
+    }
+}
+
+const existeProfeId = async (id= '') => {
+    const prof = await Profes.findOne({id});
+
+    if(prof){
+        throw new Error(`El profe con el id ${id} does not exists`);
+    }
+}
 
 module.exports = {
     esRoleValido,
@@ -68,5 +83,7 @@ module.exports = {
     existeUsuarioById,
     existenteEmailEst,
     existenteEmailProf,
-    existeCursoId
+    existeCursoId,
+    mayorA3,
+    existeProfeId
 }

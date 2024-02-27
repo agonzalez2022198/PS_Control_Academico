@@ -1,4 +1,9 @@
 const { Schema, model} = require('mongoose');
+const mongoose = require('mongoose');
+
+function arrayLimite (val){
+    return val.length <= 3;
+}
 
 const ProfesSchema = Schema({
 
@@ -26,6 +31,13 @@ const ProfesSchema = Schema({
     telefono: {
         type: String,
         required: [true, 'El telefono es obligatorio.']
+    },
+
+    cursos:{
+        type: [mongoose.Schema.Types.ObjectId],
+        required: true,
+        validate: [arrayLimite, 'No pueden haber más de 3 cursos asignados'],
+        ref: "cursosEstudiantes"
     },
 
     estado:{

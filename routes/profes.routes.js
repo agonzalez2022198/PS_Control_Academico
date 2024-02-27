@@ -4,12 +4,12 @@ const {check} = require('express-validator');
 const {
     profesGet,
     getProfesById,
-    profesPost } = require('../controller/profesores.controller');
+    profesPost, asignarCursosE } = require('../controller/profesores.controller');
 
 
-const {validarCampos} = require('../middleawares');
+const {validarCampos, validarJWT} = require('../middleawares');
 
-const {existenteEmailProf} = require('../hellpers/db-validator');
+const {existenteEmailProf, mayorA3, existeProfeId} = require('../hellpers/db-validator');
 
 
 const router = Router();
@@ -36,6 +36,16 @@ router.post(
         validarCampos,
     ], profesPost
 );
+
+router.put(
+    "/asignarCursosE/:id",
+    [
+        validarJWT,
+        check('id').custom(mayorA3),
+        check('id', 'No es un id válido').isMongoId(),
+        check('id').custom(existeProfeId),
+        validarCampos
+    ], asignarCursosE);
 
 
 
