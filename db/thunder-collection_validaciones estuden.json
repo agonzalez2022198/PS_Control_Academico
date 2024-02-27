@@ -1,0 +1,42 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "validaciones estuden",
+    "dateExported": "2024-02-27T23:19:32.382Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "08f52b5b-c33b-40e7-a67e-6ba34f525081",
+            "colId": "e95db4d6-e2f9-4157-8f9d-067ae279adb1",
+            "containerId": "",
+            "name": "asignar cursos",
+            "url": "http://localhost:3000/api/usuarios/asignarCursosE/65de6524bde9570b59b93072",
+            "method": "PUT",
+            "sortNum": 10000,
+            "created": "2024-02-27T21:32:17.434Z",
+            "modified": "2024-02-27T23:15:04.562Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"cursos\": [\"65de3438939b46ebb19f5d62\"]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "35a0e69a-0d3c-40ce-88fb-fae90933efd6",
+            "colId": "e95db4d6-e2f9-4157-8f9d-067ae279adb1",
+            "containerId": "",
+            "name": "ver cursosid",
+            "url": "http://localhost:3000/api/usuarios/visualizarCursosE/65de6524bde9570b59b93072",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-02-27T22:57:54.430Z",
+            "modified": "2024-02-27T22:58:51.699Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
