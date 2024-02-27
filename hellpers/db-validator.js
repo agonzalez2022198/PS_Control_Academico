@@ -62,10 +62,10 @@ const existeCursoId = async (id= '') => {
 }
 
 const mayorA3 = async(id = '') =>{
-    const estudiante = await Estudiante.findOne({_id: id});
-    const cursos = estudiante.cursos
+    const usuario = await Usuario.findOne({_id: id});
+    const cursos = usuario.cursos;
     if(cursos.length >= 3){
-        throw new Error('Este estudiante ya cuenta con el máximo de cursos asignables');
+        throw new Error('Este usuario ya cuenta con el máximo de cursos asignables');
     }
 }
 

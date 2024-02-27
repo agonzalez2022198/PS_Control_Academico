@@ -1,4 +1,10 @@
-const { Schema, model} = require('mongoose');
+const { Schema, model, default: mongoose} = require('mongoose');
+
+
+
+function arrayLimite (val){
+    return val.length <= 3;
+}
 
 const UsuarioSchema = Schema({
 
@@ -28,6 +34,13 @@ const UsuarioSchema = Schema({
     estado:{
         type: Boolean,
         default: true
+    },
+
+    cursos:{
+        type: [mongoose.Schema.Types.ObjectId],
+        required: true,
+        validate: [arrayLimite, 'No pueden haber más de 3 cursos asignados'],
+        ref: "Cursos"
     },
     google:{
         type: Boolean,

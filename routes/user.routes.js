@@ -12,9 +12,11 @@ const {
     usuariosGet, 
     getUsuarioById,
     putUsuarios,
-    usuariosDelete} = require('../controller/usuario.controller');
+    usuariosDelete,
+    asignarCursosE,
+visualizarCursosE} = require('../controller/usuario.controller');
 
-const { existenteEmail, esRoleValido, existeUsuarioById } = require('../hellpers/db-validator');
+const { existenteEmail, esRoleValido, existeUsuarioById, mayorA3 } = require('../hellpers/db-validator');
 
 const router = Router();
 
@@ -28,14 +30,14 @@ router.get(
         validarCampos
     ], getUsuarioById);
 
-router.put(
+/*router.put(
     "/:id",
     [
         check('id', 'No es un id válido').isMongoId(),
         check('id').custom(existeUsuarioById),
         check("role").custom(esRoleValido),
         validarCampos
-    ], putUsuarios);
+    ], putUsuarios);*/
 
 router.post(
     "/",
@@ -57,6 +59,26 @@ router.delete(
         check('id', 'No es un id válido').isMongoId(),
         check('id').custom(existeUsuarioById),
         validarCampos
-    ], usuariosDelete);
+    ], usuariosDelete
+);
+
+router.put(
+    "/asignarCursosE/:id",
+    [
+        check('id').custom(mayorA3), // Aquí deberías usar el middleware mayorA3
+        check('id', 'No es un id válido').isMongoId(),
+        check('id').custom(existeUsuarioById),
+        validarCampos
+    ], asignarCursosE);
+
+
+router.get(
+        "/visualizarCursosE/:id",
+        [
+            check('id', 'No es un id válido').isMongoId(),
+            check('id').custom(existeUsuarioById),
+            validarCampos
+        ], visualizarCursosE);
+
 
 module.exports = router;

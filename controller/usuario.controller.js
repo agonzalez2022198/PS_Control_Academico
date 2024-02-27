@@ -1,5 +1,6 @@
 const bcryptjs = require('bcrypt');
 const Usuario = require('../models/usuario');
+const Curso = require('../models/cursos');
 const { response } = require('express');
 
 const usuariosGet = async (req, res = response) => {
@@ -25,6 +26,18 @@ const usuariosGet = async (req, res = response) => {
 
 
 //Crear metodo para roles, crear una clase para llevar tokens, esto es para probar el login.
+
+
+const visualizarCursosE = async (req, res = response) => {
+    const { id } = req.params;
+    const usuario = await Usuario.findOne({ _id: id });
+    const cursos = usuario.cursos;
+    const cursosE = await Curso.find({ _id: { $in: cursos } });
+    const nombresCursos = cursosE.map(curso => curso.nameCurso)
+    res.status(200).json({
+      msg: `Los cursos del estudiante son los siguientes: ${nombresCursos.join(', ')}`,
+    });
+};
 
 
 const getUsuarioById = async (req, res) => {
@@ -87,6 +100,52 @@ const usuariosPost = async (req, res) => {
 }
 
 
+const asignarCursosE = async (req, res = response) => {
+    const { id } = req.params;
+    const { cursos, ...resto } = req.body;
+    try {
+        const usuarioY = await Usuario.findOne({_id: id});
+        if (!usuarioY) {
+            return res.status(400).json({ error: 'No se encontró el usuario' });
+        }
+        const cursosY = usuarioY.cursos; // Aquí podría estar el problema
+   
+        const cursosE = await Curso.find({ _id: { $in: cursos } });
+   
+        if(cursosE.length > 3){
+            throw new Error('No se pueden asignar más de 3 cursos');
+        }
+        if (cursosE.length !== cursos.length) {
+            return res.status(400).json({ error: 'No se encontraron los cursos' });
+        }
+        for (const curso of cursosE){
+            if(cursosY.includes(curso._id)){ // Aquí también podría estar el problema
+                return res.status(400).json({ error: 'Se está asignando un curso que ya ha sido asignado' });
+            }
+        }
+
+        const usuarioActualizado = await Usuario.findByIdAndUpdate(id, {
+            ...resto,
+            cursos,
+        });
+
+        res.status(200).json({
+            msg: 'Se añadieron los cursos',
+            usuario: usuarioActualizado
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({error: 'No se asignaron los cursos'})
+    }
+};
+
+
+
+
+
+
+
+
 //Modulos para exportar y usarlos en otras clases
 
 module.exports = {
@@ -94,6 +153,8 @@ module.exports = {
     getUsuarioById,
     putUsuarios,
     usuariosDelete,
-    usuariosPost
+    usuariosPost,
+    asignarCursosE,
+    visualizarCursosE
 
 }
